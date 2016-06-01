@@ -1,0 +1,17 @@
+{
+  "name": "segment-pixelator",
+  "version": "1.0.0",
+  "description": "Pixel tracking server that will parse any arbitrary analytics data that is encoded to base64 string, and send it to segment.io.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Permagate",
+  "license": "MIT",
+  "dependencies": {
+    "analytics-node": "^2.1.0",
+    "dotenv": "^2.0.0",
+    "koa": "^1.2.0"
+  }
+}
