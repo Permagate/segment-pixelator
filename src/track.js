@@ -13,9 +13,17 @@ const analytics = new Analytics(config.get('segment.key'), {
  */
 module.exports = function(message) {
   try {
-    if (message.userId || message.ananoymousId) {
-      analytics.track(message);
-      console.log(`${message.event} by ${message.userId || message.ananoymousId}`);
+    if (!message.event) {
+      message.event = 'Opened Email';
+    }
+
+    const { event, userId } = message;
+    delete message.event;
+    delete message.userId;
+
+    if (event && userId) {
+      analytics.track({ event, userId, properties: message });
+      console.log(`${event} by ${userId}`);
     }
   } catch (e) {
     console.error('Unexpected error!');
