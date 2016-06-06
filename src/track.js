@@ -9,13 +9,10 @@ const analytics = new Analytics(config.get('segment.key'), {
 });
 
 /**
- * Parse JSON data from base64-encoded string.
- * Then track it to segment.
+ * Track a plain JS object to segment.
  */
-module.exports = function(data) {
+module.exports = function(message) {
   try {
-    const dataString = Buffer.from(data, 'base64').toString('utf8');
-    const message = JSON.parse(dataString);
     if (message.userId || message.ananoymousId) {
       analytics.track(message);
       console.log(`${message.event} by ${message.userId || message.ananoymousId}`);

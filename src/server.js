@@ -18,7 +18,7 @@ const demo = fs.readFileSync(demoPath, {'encoding': 'utf8'});
 const app = koa();
 app.use(function* () {
   if (this.request.path.slice(0, 10) === '/pixel.gif') {
-    track(this.request.query.data);
+    track(this.request.query);
     this.body = pixel;
     this.response.headers = pixelHeaders;
     this.response.status = 200;
